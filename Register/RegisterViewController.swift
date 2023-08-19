@@ -60,10 +60,21 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add gesture to View
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(releaseKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        
+        // fetch countries.
         Task { await countries = Countries().countries }
         prepareInputFields()
     }
     
+    // End editing when tap gesture.
+    @objc func releaseKeyboard(_ gesture: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+   
     override func viewWillAppear(_ animated: Bool) {
         modifyLabelText()
         let buttonTitle = localizedString("Change the language")
@@ -99,9 +110,14 @@ class RegisterViewController: UIViewController {
         // Disable the StateTextField
         stateTextField.isEnabled = false
         
+        
+        
         //Custom style for all TextFields
         textFields = [nameTextField, codeTextField, passwordTextField, phoneNumberTextField, emailTextField, countryTextField, stateTextField]
         for textField in textFields {
+            if !Constants.isEnglish {
+                textField.textAlignment = .right
+            }
             textField.font = Constants.textFieldFont
             if let currentPlaceholder = textField.placeholder {
                 let placeholder = NSAttributedString(string: currentPlaceholder, attributes: [NSAttributedString.Key.foregroundColor : UIColor.darkGray])
