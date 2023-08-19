@@ -24,7 +24,7 @@
                                             <constraint firstAttribute="height" constant="44" id="CHW-BW-6QX"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="given-name"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="given-name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="89o-ol-caK">
                                         <rect key="frame" x="0.0" y="69" width="351" height="44"/>
@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="138" width="351" height="44"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4KA-ob-ffO">
-                                                <rect key="frame" x="0.0" y="0.0" width="112.33333333333333" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="113.33333333333333" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="nu4-8g-yaD"/>
                                                 </constraints>
@@ -46,11 +46,14 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ECz-lg-bwt">
-                                                <rect key="frame" x="122.33333333333336" y="0.0" width="228.66666666666663" height="44"/>
+                                                <rect key="frame" x="123.33333333333336" y="0.0" width="227.66666666666663" height="44"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ECz-lg-bwt" firstAttribute="width" secondItem="4KA-ob-ffO" secondAttribute="width" multiplier="2" constant="1" id="OwP-zn-cUz"/>
+                                        </constraints>
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dT0-oj-eCs">
                                         <rect key="frame" x="0.0" y="207" width="351" height="44"/>
@@ -85,8 +88,8 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="ATj-tc-q31"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Change Language"/>
                                 <connections>
                                     <action selector="changeLgButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ML-hy-fIW"/>
                                 </connections>

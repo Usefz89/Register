@@ -12,9 +12,9 @@ class RegisterViewController: UIViewController {
     var requestManager = RequestManager()
     var countries: [Country] = []
     var states: [State] = []
-    let labelText = "By clicking Register you agree on the terms and conditions"
+    let labelText = localizedString("agree")
     let termUrlString = "https://termsfeed.com/blog/sample-terms-and-conditions-template/"
-    let linkRange = "terms and conditions"
+    let linkRange = localizedString("terms")
     
     @IBOutlet weak var termsLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
@@ -35,6 +35,8 @@ class RegisterViewController: UIViewController {
     
     @IBAction func changeLgButtonTapped(_ sender: Any) {
         register()
+        changeLanguageInterface()
+        
     }
     
     var selectedCountry: Country? {
@@ -58,26 +60,26 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Task {
-            await countries = Countries().countries
-        }
+        Task { await countries = Countries().countries }
         prepareInputFields()
-        modifyLabelText()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        modifyLabelText()
+        let buttonTitle = localizedString("Change the language")
+        lgButton.setTitle(buttonTitle, for: .normal)
         lgButton.titleLabel?.font = Constants.buttonFont
         navigationBarTitleStyling()
-     
     }
     
     // Styling the navigation bar title
     func navigationBarTitleStyling() {
-        self.title = "REGISTER"
+        self.title = localizedString("Register")
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red, NSAttributedString.Key.font: Constants.titleFont]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
     }
     
+    // set inputTextfiled to it's related pickerview
     func prepareInputFields() {
         codePickerView.tag = 1
         countryPickerView.tag = 2
@@ -86,17 +88,13 @@ class RegisterViewController: UIViewController {
         stateTextField.inputView = statePickerView
         codeTextField.inputView = codePickerView
         
-        countryTextField.rightView = UIImageView(image: UIImage(systemName: "chevron.down"))
-        countryTextField.rightView?.tintColor = .black
-        stateTextField.rightView = UIImageView(image: UIImage(systemName: "chevron.down"))
-        stateTextField.rightView?.tintColor = .black
-        codeTextField.rightView = UIImageView(image: UIImage(systemName: "chevron.down"))
-        codeTextField.rightView?.tintColor = .black
-
-
-        countryTextField.rightViewMode = .always
-        stateTextField.rightViewMode = .always
-        codeTextField.rightViewMode = .always
+        nameTextField.placeholder = localizedString("Full name")
+        passwordTextField.placeholder = localizedString("Password")
+        codeTextField.placeholder = localizedString("Code")
+        phoneNumberTextField.placeholder = localizedString("Phone number")
+        emailTextField.placeholder = localizedString("Email")
+        countryTextField.placeholder = localizedString("Country")
+        stateTextField.placeholder = localizedString("City")
         
         // Disable the StateTextField
         stateTextField.isEnabled = false
@@ -109,8 +107,6 @@ class RegisterViewController: UIViewController {
                 let placeholder = NSAttributedString(string: currentPlaceholder, attributes: [NSAttributedString.Key.foregroundColor : UIColor.darkGray])
                 textField.attributedPlaceholder = placeholder
             }
-
-            
             textField.borderStyle = .roundedRect
             textField.layer.cornerRadius = Constants.cornerRadius
             textField.layer.borderColor = Constants.borderColor
@@ -139,7 +135,6 @@ class RegisterViewController: UIViewController {
             textField.rightView = containerView
             textField.rightViewMode = .always
             textField.rightView?.tintColor = .black
-
         }
       
         countryPickerView.delegate = self
@@ -156,9 +151,8 @@ class RegisterViewController: UIViewController {
         let linkText = linkRange
         let urlString = termUrlString
                 
-        let attributedString = NSMutableAttributedString(string: completeText)
-                
-        if let url = URL(string: urlString) {
+        let attributedString = NSMutableAttributedString(string: localizedString(completeText))
+        if URL(string: urlString) != nil {
             let linkRange = (completeText as NSString).range(of: linkText)
             attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: linkRange)
         }
@@ -193,10 +187,31 @@ class RegisterViewController: UIViewController {
         }
     }
     
+    // Print all the textfields
     func register() {
         for textField in textFields {
-            print("\(textField.text ?? "")")
+            print(textField.text ?? "")
         }
+    }
+    
+    // Change language and provide alert to shutdwon
+    func changeLanguageInterface() {
+        let currentLanguage = Locale.current.language.languageCode?.identifier
+        let selectedLanguage = currentLanguage == "en" ? "ar" : "en"
+        UserDefaults.standard.set([selectedLanguage], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()
+        
+        // Make alert
+        let alert = UIAlertController(
+            title: localizedString("alertTitle"),
+            message: localizedString("alertDescription"),
+            preferredStyle: .alert
+        )
+        // Add alert action
+        alert.addAction(UIAlertAction(title: localizedString("ok"), style: .default) {_ in
+            exit(0)
+        })
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -227,7 +242,7 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         case 1:
            return "\(countries[row].code)"
         case 2:
-            return countries[row].name
+            return countries[row].nameByLang
         case 3:
             return states[row].name
         default:

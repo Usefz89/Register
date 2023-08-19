@@ -30,7 +30,6 @@ enum RequestCountry: RequestProtocol {
         case .country:
             return [:]
         case .state(let countryID):
-            print("return the states urlparams")
             return ["countryId": "\(countryID)"]
         }
     }

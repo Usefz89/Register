@@ -16,10 +16,10 @@ struct Constants {
     static var textFieldFont = isEnglish ? UIFont(name: "Montserrat-Regular", size: 14) :
     UIFont(name: "GE Dinar One Medium", size: 15)
     static var buttonFont = isEnglish ? UIFont(name: "Montserrat-Regular", size: 20) :
-    UIFont(name: "GE Dinar One Medium", size: 15)
-    static var titleFont = isEnglish ? UIFont(name: "Montserrat-Regular", size: 20) :
     UIFont(name: "GE Dinar One Medium", size: 20)
-    static var labelFont = isEnglish ? UIFont(name: "Montserrat-Regular", size: 9) :
-    UIFont(name: "GE Dinar One Medium", size: 9)
+    static var titleFont = isEnglish ? UIFont(name: "Montserrat-Regular", size: 22) :
+    UIFont(name: "GE Dinar One Medium", size: 22)
+    static var labelFont = isEnglish ? UIFont(name: "Montserrat-Regular", size: 10) :
+    UIFont(name: "GE Dinar One Medium", size: 12)
     
 }

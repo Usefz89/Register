@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  Register
+
+  Created by Yousef Zuriqi on 19/08/2023.
+  
+*/
+"Register" = "REGISTER";
+"Full name" = "Full name";
+"Password" = "Password";
+"Code" = "Code";
+"Phone number" = "Phone number";
+"Email" = "Email";
+"Country" = "Country";
+"City" = "City";
+"agree" = "By clicking Register you agree on the terms and conditions";
+"terms" = "terms and conditions";
+"Change the language" = "Change the language";
+
+"alertTitle" = "Restart the app";
+"alertDescription" = "the app will be closed to change the language please reopen";
+"ok" = "OK";

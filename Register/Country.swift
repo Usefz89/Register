@@ -15,6 +15,10 @@ struct Country: Codable {
     let name: String
     let flag: String
     let code: Int
+    
+    var nameByLang: String {
+        return Constants.isEnglish ? nameEn : nameAr
+    }
  
 
     enum CodingKeys: String, CodingKey {

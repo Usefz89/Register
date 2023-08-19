@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  Register
+
+  Created by Yousef Zuriqi on 19/08/2023.
+  
+*/
+
+"Register" = "‏التسجيل";
+"Full name" = "الاسم الكامل";
+"Password" = "كلمة المرور";
+"Code" = "الرمز";
+"Phone number" = "رقم الهاتف";
+"Email" = "البريد الإلكتروني";
+"Country" = "الدولة";
+"City" = "المدينة";
+"agree" = "بالنقر على تسجيل، أنت توافق على الشروط والأحكام";
+"terms" = "الشروط والأحكام";
+"Change the language" = "‏تغيير اللغة";
+
+"alertTitle" = "‏إعادة تشغيل البرنامج";
+"alertDescription" = "‏سيتم إغلاق البرنامج لضبط إعدادات اللغة يرجى فتحه مرة أخرى";
+"ok" = "حسنا";

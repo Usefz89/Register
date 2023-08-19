@@ -11,6 +11,8 @@ struct State: Codable {
     let name: String
     let id: String
     
+  
+    
     
     enum CodingKeys: String, CodingKey {
         case name = "Text"

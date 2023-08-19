@@ -1,0 +1,30 @@
+
+/* Class = "UITextField"; placeholder = "Code"; ObjectID = "4KA-ob-ffO"; */
+"4KA-ob-ffO.placeholder" = "Code";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "89o-ol-caK"; */
+"89o-ol-caK.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Phone number"; ObjectID = "ECz-lg-bwt"; */
+"ECz-lg-bwt.placeholder" = "Phone number";
+
+/* Class = "UITextField"; placeholder = "City"; ObjectID = "IY1-Ke-doX"; */
+"IY1-Ke-doX.placeholder" = "City";
+
+/* Class = "UIButton"; configuration.title = "Change Language"; ObjectID = "PaF-eh-l2Q"; */
+"PaF-eh-l2Q.configuration.title" = "Change Language";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "PaF-eh-l2Q"; */
+"PaF-eh-l2Q.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Full name"; ObjectID = "TCB-8l-x37"; */
+"TCB-8l-x37.placeholder" = "Full name";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "dT0-oj-eCs"; */
+"dT0-oj-eCs.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "By clicking Register you agree on the terms and conditions"; ObjectID = "ivy-1d-P1O"; */
+"ivy-1d-P1O.text" = "By clicking Register you agree on the terms and conditions";
+
+/* Class = "UITextField"; placeholder = "Country"; ObjectID = "rot-aL-h66"; */
+"rot-aL-h66.placeholder" = "Country";
