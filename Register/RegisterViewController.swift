@@ -8,13 +8,15 @@
 import UIKit
 import WebKit
 
+
+
 class RegisterViewController: UIViewController {
     var requestManager = RequestManager()
     var countries: [Country] = []
     var states: [State] = []
-    let labelText = localizedString("agree")
+    var labelText = localizedString(for: "agree")
     let termUrlString = "https://termsfeed.com/blog/sample-terms-and-conditions-template/"
-    let linkRange = localizedString("terms")
+    var linkRange = localizedString(for: "terms")
     
     @IBOutlet weak var termsLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
@@ -36,13 +38,13 @@ class RegisterViewController: UIViewController {
     @IBAction func changeLgButtonTapped(_ sender: Any) {
         register()
         changeLanguageInterface()
-        
     }
     
     var selectedCountry: Country? {
         didSet {
             Task {
-                try await states = requestManager.perform(request: RequestCountry.state(countryID: selectedCountry!.countryId))
+                guard let selectedCountry = selectedCountry else {return}
+                 await states = States(countryID: selectedCountry.countryId).states
                 if !states.isEmpty {
                     DispatchQueue.main.async {
                         self.stateTextField.isEnabled = true
@@ -65,9 +67,36 @@ class RegisterViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(releaseKeyboard))
         view.addGestureRecognizer(tapGesture)
         
+        //Add observer
+        NotificationCenter.default.addObserver(self, selector: #selector(languageChanged), name: .languageChanged, object: nil)
+        
         // fetch countries.
         Task { await countries = Countries().countries }
         prepareInputFields()
+    }
+    
+    @objc func languageChanged() {
+        self.title = localizedString(for: "Register")
+        
+        self.labelText = localizedString(for: "agree")
+        self.linkRange = localizedString(for: "terms")
+        self.lgButton.setTitle(localizedString(for: "Change the language"), for: .normal)
+
+        modifyLabelText()
+        prepareInputFields()
+//        self.nameTextField.placeholder = localizedString(for: "Full name")
+//
+//        self.passwordTextField.placeholder = localizedString(for: "Password")
+//        self.emailTextField.placeholder = localizedString(for: "Email")
+//        self.codeTextField.placeholder  = localizedString(for: "Code")
+//        self.phoneNumberTextField.placeholder = localizedString(for: "Phone number")
+//        self.countryTextField.placeholder = localizedString(for: "Country")
+//        self.stateTextField.placeholder = localizedString(for: "City")
+//
+//        for textField in textFields {
+//            textField.textAlignment = Constants.isEnglish ? .left : .right
+//        }
+        
     }
     
     // End editing when tap gesture.
@@ -77,15 +106,17 @@ class RegisterViewController: UIViewController {
    
     override func viewWillAppear(_ animated: Bool) {
         modifyLabelText()
-        let buttonTitle = localizedString("Change the language")
+        let buttonTitle = localizedString(for: "Change the language")
         lgButton.setTitle(buttonTitle, for: .normal)
         lgButton.titleLabel?.font = Constants.buttonFont
         navigationBarTitleStyling()
     }
     
+   
+    
     // Styling the navigation bar title
     func navigationBarTitleStyling() {
-        self.title = localizedString("Register")
+        self.title = localizedString(for:"Register")
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red, NSAttributedString.Key.font: Constants.titleFont]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
     }
@@ -99,24 +130,24 @@ class RegisterViewController: UIViewController {
         stateTextField.inputView = statePickerView
         codeTextField.inputView = codePickerView
         
-        nameTextField.placeholder = localizedString("Full name")
-        passwordTextField.placeholder = localizedString("Password")
-        codeTextField.placeholder = localizedString("Code")
-        phoneNumberTextField.placeholder = localizedString("Phone number")
-        emailTextField.placeholder = localizedString("Email")
-        countryTextField.placeholder = localizedString("Country")
-        stateTextField.placeholder = localizedString("City")
+        nameTextField.placeholder = localizedString(for:"Full name")
+        passwordTextField.placeholder = localizedString(for:"Password")
+        codeTextField.placeholder = localizedString(for:"Code")
+        phoneNumberTextField.placeholder = localizedString(for:"Phone number")
+        emailTextField.placeholder = localizedString(for:"Email")
+        countryTextField.placeholder = localizedString(for:"Country")
+        stateTextField.placeholder = localizedString(for:"City")
         
         // Disable the StateTextField
         stateTextField.isEnabled = false
-        
-        
         
         //Custom style for all TextFields
         textFields = [nameTextField, codeTextField, passwordTextField, phoneNumberTextField, emailTextField, countryTextField, stateTextField]
         for textField in textFields {
             if !Constants.isEnglish {
                 textField.textAlignment = .right
+            } else {
+                textField.textAlignment = .left
             }
             textField.font = Constants.textFieldFont
             if let currentPlaceholder = textField.placeholder {
@@ -163,13 +194,11 @@ class RegisterViewController: UIViewController {
     
     // Styling the label text
     func modifyLabelText() {
-        let completeText = labelText
-        let linkText = linkRange
         let urlString = termUrlString
                 
-        let attributedString = NSMutableAttributedString(string: localizedString(completeText))
+        let attributedString = NSMutableAttributedString(string: localizedString(for:labelText))
         if URL(string: urlString) != nil {
-            let linkRange = (completeText as NSString).range(of: linkText)
+            let linkRange = (labelText as NSString).range(of: linkRange)
             attributedString.addAttribute(.foregroundColor, value: UIColor.red, range: linkRange)
         }
         termsLabel.font = Constants.labelFont
@@ -210,24 +239,31 @@ class RegisterViewController: UIViewController {
         }
     }
     
+   
+
+    
+    //change text language based on localized string key
+    
     // Change language and provide alert to shutdwon
     func changeLanguageInterface() {
-        let currentLanguage = Locale.current.language.languageCode?.identifier
-        let selectedLanguage = currentLanguage == "en" ? "ar" : "en"
-        UserDefaults.standard.set([selectedLanguage], forKey: "AppleLanguages")
-        UserDefaults.standard.synchronize()
         
-        // Make alert
-        let alert = UIAlertController(
-            title: localizedString("alertTitle"),
-            message: localizedString("alertDescription"),
-            preferredStyle: .alert
-        )
-        // Add alert action
-        alert.addAction(UIAlertAction(title: localizedString("ok"), style: .default) {_ in
-            exit(0)
-        })
-        self.present(alert, animated: true, completion: nil)
+        LanguageManager.shared.setLanguage()
+//        let currentLanguage = Locale.current.language.languageCode?.identifier
+//        let selectedLanguage = currentLanguage == "en" ? "ar" : "en"
+//        UserDefaults.standard.set([selectedLanguage], forKey: "AppleLanguages")
+//        UserDefaults.standard.synchronize()
+//
+//        // Make alert
+//        let alert = UIAlertController(
+//            title: localizedString("alertTitle"),
+//            message: localizedString("alertDescription"),
+//            preferredStyle: .alert
+//        )
+//        // Add alert action
+//        alert.addAction(UIAlertAction(title: localizedString("ok"), style: .default) {_ in
+//            exit(0)
+//        })
+//        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -277,9 +313,7 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             countryTextField.text = countries[row].name
             countryTextField.resignFirstResponder()
             selectedCountry = countries[row]
-
-            
-            
+  
         case 3:
             stateTextField.text = states[row].name
             stateTextField.resignFirstResponder()
