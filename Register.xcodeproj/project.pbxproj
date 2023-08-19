@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78BD6FA62A904860008B9101 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD6FA52A904860008B9101 /* Constants.swift */; };
 		78EEF2C62A8F7E5600AC83F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEF2C52A8F7E5600AC83F1 /* AppDelegate.swift */; };
 		78EEF2C82A8F7E5600AC83F1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEF2C72A8F7E5600AC83F1 /* SceneDelegate.swift */; };
 		78EEF2CA2A8F7E5600AC83F1 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEF2C92A8F7E5600AC83F1 /* RegisterViewController.swift */; };
@@ -25,9 +26,12 @@
 		78EEF2EF2A8F886D00AC83F1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEF2EE2A8F886D00AC83F1 /* State.swift */; };
 		78EEF2F12A8F965100AC83F1 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEF2F02A8F965100AC83F1 /* States.swift */; };
 		78EEF2F32A8F96D200AC83F1 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEF2F22A8F96D200AC83F1 /* Countries.swift */; };
+		78EEF2F72A8F9B9E00AC83F1 /* GE Dinar One Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78EEF2F52A8F9B9E00AC83F1 /* GE Dinar One Medium.ttf */; };
+		78EEF2F82A8F9B9E00AC83F1 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78EEF2F62A8F9B9E00AC83F1 /* Montserrat-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		78BD6FA52A904860008B9101 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		78EEF2C22A8F7E5600AC83F1 /* Register.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Register.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78EEF2C52A8F7E5600AC83F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78EEF2C72A8F7E5600AC83F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +52,8 @@
 		78EEF2EE2A8F886D00AC83F1 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		78EEF2F02A8F965100AC83F1 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		78EEF2F22A8F96D200AC83F1 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
+		78EEF2F52A8F9B9E00AC83F1 /* GE Dinar One Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GE Dinar One Medium.ttf"; sourceTree = "<group>"; };
+		78EEF2F62A8F9B9E00AC83F1 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +86,9 @@
 		78EEF2C42A8F7E5600AC83F1 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				78EEF2F42A8F9B6A00AC83F1 /* Fonts */,
 				78EEF2C92A8F7E5600AC83F1 /* RegisterViewController.swift */,
+				78BD6FA52A904860008B9101 /* Constants.swift */,
 				78EEF2F02A8F965100AC83F1 /* States.swift */,
 				78EEF2F22A8F96D200AC83F1 /* Countries.swift */,
 				78EEF2EB2A8F814D00AC83F1 /* Country.swift */,
@@ -125,6 +133,15 @@
 				78EEF2D02A8F7E5600AC83F1 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		78EEF2F42A8F9B6A00AC83F1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				78EEF2F52A8F9B9E00AC83F1 /* GE Dinar One Medium.ttf */,
+				78EEF2F62A8F9B9E00AC83F1 /* Montserrat-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,8 +202,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78EEF2F72A8F9B9E00AC83F1 /* GE Dinar One Medium.ttf in Resources */,
 				78EEF2D22A8F7E5600AC83F1 /* LaunchScreen.storyboard in Resources */,
 				78EEF2CF2A8F7E5600AC83F1 /* Assets.xcassets in Resources */,
+				78EEF2F82A8F9B9E00AC83F1 /* Montserrat-Regular.ttf in Resources */,
 				78EEF2CD2A8F7E5600AC83F1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +224,7 @@
 				78EEF2EC2A8F814D00AC83F1 /* Country.swift in Sources */,
 				78EEF2E62A8F80A200AC83F1 /* RequestCountry.swift in Sources */,
 				78EEF2E72A8F80A200AC83F1 /* APIConstants.swift in Sources */,
+				78BD6FA62A904860008B9101 /* Constants.swift in Sources */,
 				78EEF2E42A8F80A200AC83F1 /* APIManager.swift in Sources */,
 				78EEF2C82A8F7E5600AC83F1 /* SceneDelegate.swift in Sources */,
 				78EEF2F12A8F965100AC83F1 /* States.swift in Sources */,
