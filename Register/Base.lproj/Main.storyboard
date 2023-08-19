@@ -78,16 +78,22 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaF-eh-l2Q">
-                                <rect key="frame" x="0.0" y="719" width="375" height="59"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PaF-eh-l2Q">
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
                                 <color key="backgroundColor" red="0.81960785390000002" green="0.22745099660000001" blue="0.18039217590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="ATj-tc-q31"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Change Language"/>
+                                <connections>
+                                    <action selector="changeLgButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ML-hy-fIW"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivy-1d-P1O">
-                                <rect key="frame" x="12" y="595" width="351" height="20.333333333333371"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By clicking Register you agree on the terms and conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivy-1d-P1O">
+                                <rect key="frame" x="12" y="595" width="351" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -111,10 +117,12 @@
                         <outlet property="codeTextField" destination="4KA-ob-ffO" id="t9m-Ur-xDK"/>
                         <outlet property="countryTextField" destination="rot-aL-h66" id="z08-7L-LFz"/>
                         <outlet property="emailTextField" destination="dT0-oj-eCs" id="Arg-Xg-TQ4"/>
+                        <outlet property="lgButton" destination="PaF-eh-l2Q" id="MKC-qc-RRw"/>
                         <outlet property="nameTextField" destination="TCB-8l-x37" id="Rrw-cN-GqJ"/>
                         <outlet property="passwordTextField" destination="89o-ol-caK" id="H87-bv-Zpc"/>
                         <outlet property="phoneNumberTextField" destination="ECz-lg-bwt" id="hQm-QH-gJk"/>
                         <outlet property="stateTextField" destination="IY1-Ke-doX" id="XpM-sA-uIl"/>
+                        <outlet property="termsLabel" destination="ivy-1d-P1O" id="dyh-cI-OGE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
