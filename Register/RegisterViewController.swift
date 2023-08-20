@@ -77,25 +77,13 @@ class RegisterViewController: UIViewController {
     
     @objc func languageChanged() {
         self.title = localizedString(for: "Register")
-        
         self.labelText = localizedString(for: "agree")
         self.linkRange = localizedString(for: "terms")
         self.lgButton.setTitle(localizedString(for: "Change the language"), for: .normal)
+        UserDefaults.standard.set([LanguageManager.shared.currentLanguage], forKey: "AppleLanguages")
 
         modifyLabelText()
         prepareInputFields()
-//        self.nameTextField.placeholder = localizedString(for: "Full name")
-//
-//        self.passwordTextField.placeholder = localizedString(for: "Password")
-//        self.emailTextField.placeholder = localizedString(for: "Email")
-//        self.codeTextField.placeholder  = localizedString(for: "Code")
-//        self.phoneNumberTextField.placeholder = localizedString(for: "Phone number")
-//        self.countryTextField.placeholder = localizedString(for: "Country")
-//        self.stateTextField.placeholder = localizedString(for: "City")
-//
-//        for textField in textFields {
-//            textField.textAlignment = Constants.isEnglish ? .left : .right
-//        }
         
     }
     
@@ -111,8 +99,6 @@ class RegisterViewController: UIViewController {
         lgButton.titleLabel?.font = Constants.buttonFont
         navigationBarTitleStyling()
     }
-    
-   
     
     // Styling the navigation bar title
     func navigationBarTitleStyling() {
@@ -239,12 +225,6 @@ class RegisterViewController: UIViewController {
         }
     }
     
-   
-
-    
-    //change text language based on localized string key
-    
-    // Change language and provide alert to shutdwon
     func changeLanguageInterface() {
         
         LanguageManager.shared.setLanguage()
