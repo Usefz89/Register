@@ -84,6 +84,8 @@ class RegisterViewController: UIViewController {
 
         modifyLabelText()
         prepareInputFields()
+        countryTextField.text = ""
+        stateTextField.text = ""
         
     }
     
