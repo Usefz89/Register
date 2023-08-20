@@ -80,7 +80,6 @@ class RegisterViewController: UIViewController {
         self.labelText = localizedString(for: "agree")
         self.linkRange = localizedString(for: "terms")
         self.lgButton.setTitle(localizedString(for: "Change the language"), for: .normal)
-        UserDefaults.standard.set([LanguageManager.shared.currentLanguage], forKey: "AppleLanguages")
 
         modifyLabelText()
         prepareInputFields()
@@ -292,7 +291,7 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             codeTextField.resignFirstResponder()
             
         case 2:
-            countryTextField.text = countries[row].name
+            countryTextField.text = countries[row].nameByLang
             countryTextField.resignFirstResponder()
             selectedCountry = countries[row]
   
