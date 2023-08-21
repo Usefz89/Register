@@ -32,6 +32,10 @@
 		78EEF2F32A8F96D200AC83F1 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EEF2F22A8F96D200AC83F1 /* Countries.swift */; };
 		78EEF2F72A8F9B9E00AC83F1 /* GE Dinar One Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78EEF2F52A8F9B9E00AC83F1 /* GE Dinar One Medium.ttf */; };
 		78EEF2F82A8F9B9E00AC83F1 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78EEF2F62A8F9B9E00AC83F1 /* Montserrat-Regular.ttf */; };
+		78EF53742A93BDA1003FDA52 /* RegisterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF53732A93BDA1003FDA52 /* RegisterTextField.swift */; };
+		78EF53762A93BF57003FDA52 /* InputRegisterTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF53752A93BF57003FDA52 /* InputRegisterTextField.swift */; };
+		78EF53792A93C941003FDA52 /* ClickableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF53782A93C941003FDA52 /* ClickableLabel.swift */; };
+		78EF537B2A93D6A7003FDA52 /* Extension++UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EF537A2A93D6A7003FDA52 /* Extension++UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +70,10 @@
 		78EEF2F22A8F96D200AC83F1 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
 		78EEF2F52A8F9B9E00AC83F1 /* GE Dinar One Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GE Dinar One Medium.ttf"; sourceTree = "<group>"; };
 		78EEF2F62A8F9B9E00AC83F1 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		78EF53732A93BDA1003FDA52 /* RegisterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTextField.swift; sourceTree = "<group>"; };
+		78EF53752A93BF57003FDA52 /* InputRegisterTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputRegisterTextField.swift; sourceTree = "<group>"; };
+		78EF53782A93C941003FDA52 /* ClickableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickableLabel.swift; sourceTree = "<group>"; };
+		78EF537A2A93D6A7003FDA52 /* Extension++UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension++UIView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,7 @@
 		7870BC1B2A916BD000844001 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				78EF537A2A93D6A7003FDA52 /* Extension++UIView.swift */,
 				7870BC1D2A91855100844001 /* Extension++Foundation.swift */,
 				78BD6FA72A90BC43008B9101 /* Extension++UITapGesture.swift */,
 			);
@@ -119,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				78EEF2C92A8F7E5600AC83F1 /* RegisterViewController.swift */,
+				78EF53772A93BF6A003FDA52 /* Views */,
 				7870BC192A91696200844001 /* LanguageManager.swift */,
 				78BD6FA52A904860008B9101 /* Constants.swift */,
 				78EEF2CB2A8F7E5600AC83F1 /* Main.storyboard */,
@@ -174,6 +184,16 @@
 				78EEF2F62A8F9B9E00AC83F1 /* Montserrat-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		78EF53772A93BF6A003FDA52 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				78EF53782A93C941003FDA52 /* ClickableLabel.swift */,
+				78EF53752A93BF57003FDA52 /* InputRegisterTextField.swift */,
+				78EF53732A93BDA1003FDA52 /* RegisterTextField.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +273,7 @@
 			files = (
 				7870BC1E2A91855100844001 /* Extension++Foundation.swift in Sources */,
 				78EEF2E82A8F80A200AC83F1 /* RequestProtocol.swift in Sources */,
+				78EF537B2A93D6A7003FDA52 /* Extension++UIView.swift in Sources */,
 				78EEF2CA2A8F7E5600AC83F1 /* RegisterViewController.swift in Sources */,
 				78EEF2C62A8F7E5600AC83F1 /* AppDelegate.swift in Sources */,
 				7870BC1A2A91696200844001 /* LanguageManager.swift in Sources */,
@@ -260,9 +281,12 @@
 				78EEF2EC2A8F814D00AC83F1 /* Country.swift in Sources */,
 				78EEF2E62A8F80A200AC83F1 /* RequestCountry.swift in Sources */,
 				78EEF2E72A8F80A200AC83F1 /* APIConstants.swift in Sources */,
+				78EF53762A93BF57003FDA52 /* InputRegisterTextField.swift in Sources */,
 				78BD6FA62A904860008B9101 /* Constants.swift in Sources */,
 				78EEF2E42A8F80A200AC83F1 /* APIManager.swift in Sources */,
 				78EEF2C82A8F7E5600AC83F1 /* SceneDelegate.swift in Sources */,
+				78EF53792A93C941003FDA52 /* ClickableLabel.swift in Sources */,
+				78EF53742A93BDA1003FDA52 /* RegisterTextField.swift in Sources */,
 				78EEF2F12A8F965100AC83F1 /* States.swift in Sources */,
 				78BD6FA82A90BC43008B9101 /* Extension++UITapGesture.swift in Sources */,
 				78EEF2EF2A8F886D00AC83F1 /* State.swift in Sources */,
