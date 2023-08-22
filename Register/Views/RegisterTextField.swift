@@ -40,10 +40,12 @@ class RegisterTextField: UITextField {
     }
     // Change the alignment based on the language input
     func changeAlignment() {
-        if !Constants.isEnglish {
-            self.textAlignment = .right
-        } else {
+        if Constants.isEnglish {
+            self.semanticContentAttribute = .forceLeftToRight
             self.textAlignment = .left
+        } else {
+            self.semanticContentAttribute = .forceRightToLeft
+            self.textAlignment = .right
         }
     }
     

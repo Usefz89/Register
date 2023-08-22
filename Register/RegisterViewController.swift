@@ -7,8 +7,7 @@
 
 import UIKit
 import WebKit
-
-
+import AYPopupPickerView
 
 class RegisterViewController: UIViewController {
     var requestManager = RequestManager()
@@ -26,14 +25,15 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var countryTextField: UITextField!
     @IBOutlet weak var stateTextField: UITextField!
-    
     @IBOutlet weak var lgButton: UIButton!
     
-    let codePickerView = UIPickerView()
-    let countryPickerView = UIPickerView()
-    let statePickerView = UIPickerView()
-  
+    @IBOutlet weak var phoneStackView: UIStackView!
     
+    
+    let codePickerView = AYPopupPickerView()
+    let countryPickerView = AYPopupPickerView()
+    let statePickerView = AYPopupPickerView()
+  
     @IBAction func changeLgButtonTapped(_ sender: Any) {
         register()
         changeLanguageInterface()
@@ -47,7 +47,7 @@ class RegisterViewController: UIViewController {
                 if !states.isEmpty {
                     DispatchQueue.main.async {
                         self.stateTextField.isEnabled = true
-                        self.statePickerView.reloadAllComponents()
+                        self.statePickerView.pickerView.reloadAllComponents()
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -61,6 +61,8 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // Add tap gesture recognizer to release the keyboard
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(releaseKeyboard))
         view.addGestureRecognizer(tapGesture)
@@ -107,13 +109,13 @@ class RegisterViewController: UIViewController {
     
     // set inputTextfiled to it's related pickerview
     func prepareInputFields() {
-        codePickerView.tag = 1
-        countryPickerView.tag = 2
-        statePickerView.tag = 3
+        codePickerView.pickerView.tag = 1
+        countryPickerView.pickerView.tag = 2
+        statePickerView.pickerView.tag = 3
         
-        countryTextField.inputView = countryPickerView
-        stateTextField.inputView = statePickerView
-        codeTextField.inputView = codePickerView
+        codeTextField.tag = 1
+        countryTextField.tag = 2
+        stateTextField.tag = 3
         
         nameTextField.placeholder = localizedString(for:"Full name")
         passwordTextField.placeholder = localizedString(for:"Password")
@@ -123,15 +125,17 @@ class RegisterViewController: UIViewController {
         countryTextField.placeholder = localizedString(for:"Country")
         stateTextField.placeholder = localizedString(for:"City")
         
+        
+        
         // Disable the StateTextField
         stateTextField.isEnabled = false
       
-        countryPickerView.delegate = self
-        countryPickerView.dataSource = self
-        codePickerView.delegate = self
-        codePickerView.dataSource = self
-        statePickerView.delegate = self
-        statePickerView.dataSource = self
+        countryPickerView.pickerView.delegate = self
+        countryPickerView.pickerView.dataSource = self
+        codePickerView.pickerView.delegate = self
+        codePickerView.pickerView.dataSource = self
+        statePickerView.pickerView.delegate = self
+        statePickerView.pickerView.dataSource = self
         countryTextField.delegate = self
         codeTextField.delegate = self
         stateTextField.delegate = self
@@ -156,6 +160,14 @@ class RegisterViewController: UIViewController {
     
     func changeLanguageInterface() {
         LanguageManager.shared.setLanguage()
+        if Constants.isEnglish {
+            phoneStackView.semanticContentAttribute = .forceLeftToRight
+
+            
+        } else {
+            phoneStackView.semanticContentAttribute = .forceRightToLeft
+
+        }
         /*
          **Use this method to apply built in localization for the app
         let currentLanguage = Locale.current.language.languageCode?.identifier
@@ -166,10 +178,8 @@ class RegisterViewController: UIViewController {
     }
 }
 
-
-
-
 //MARK: PickerView Delegate
+
 extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
@@ -223,11 +233,22 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 //MARK: - TextField delegate
+
 extension RegisterViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         false
     }
-   
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        switch textField.tag {
+        case 1: codePickerView.display {}
+        case 2: countryPickerView.display {}
+        case 3: statePickerView.display {}
+        default: break
+        }
+
+    }
+    
 }
 
 

@@ -124,6 +124,7 @@
                         <outlet property="nameTextField" destination="TCB-8l-x37" id="Rrw-cN-GqJ"/>
                         <outlet property="passwordTextField" destination="89o-ol-caK" id="H87-bv-Zpc"/>
                         <outlet property="phoneNumberTextField" destination="ECz-lg-bwt" id="hQm-QH-gJk"/>
+                        <outlet property="phoneStackView" destination="J62-j7-3V4" id="UNn-4N-dpg"/>
                         <outlet property="stateTextField" destination="IY1-Ke-doX" id="XpM-sA-uIl"/>
                         <outlet property="termsLabel" destination="ivy-1d-P1O" id="dyh-cI-OGE"/>
                     </connections>

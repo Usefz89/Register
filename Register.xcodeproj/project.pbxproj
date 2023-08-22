@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780AA9B02A94DFDD0003B151 /* AYPopupPickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 780AA9AF2A94DFDD0003B151 /* AYPopupPickerView */; };
 		7870BC1A2A91696200844001 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7870BC192A91696200844001 /* LanguageManager.swift */; };
 		7870BC1E2A91855100844001 /* Extension++Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7870BC1D2A91855100844001 /* Extension++Foundation.swift */; };
 		78BD6FA62A904860008B9101 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BD6FA52A904860008B9101 /* Constants.swift */; };
@@ -81,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780AA9B02A94DFDD0003B151 /* AYPopupPickerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +214,9 @@
 			dependencies = (
 			);
 			name = Register;
+			packageProductDependencies = (
+				780AA9AF2A94DFDD0003B151 /* AYPopupPickerView */,
+			);
 			productName = Register;
 			productReference = 78EEF2C22A8F7E5600AC83F1 /* Register.app */;
 			productType = "com.apple.product-type.application";
@@ -241,6 +246,9 @@
 				ar,
 			);
 			mainGroup = 78EEF2B92A8F7E5500AC83F1;
+			packageReferences = (
+				780AA9AE2A94DFDD0003B151 /* XCRemoteSwiftPackageReference "AYPopupPickerView" */,
+			);
 			productRefGroup = 78EEF2C32A8F7E5600AC83F1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -525,6 +533,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		780AA9AE2A94DFDD0003B151 /* XCRemoteSwiftPackageReference "AYPopupPickerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Aiur3908/AYPopupPickerView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		780AA9AF2A94DFDD0003B151 /* AYPopupPickerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 780AA9AE2A94DFDD0003B151 /* XCRemoteSwiftPackageReference "AYPopupPickerView" */;
+			productName = AYPopupPickerView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 78EEF2BA2A8F7E5500AC83F1 /* Project object */;
 }
