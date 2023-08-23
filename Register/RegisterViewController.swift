@@ -33,10 +33,16 @@ class RegisterViewController: UIViewController {
     let codePickerView = AYPopupPickerView()
     let countryPickerView = AYPopupPickerView()
     let statePickerView = AYPopupPickerView()
+    
+    var inputTextFields: [ UITextField] {
+        return [codeTextField, countryTextField, stateTextField]
+    }
+
   
     @IBAction func changeLgButtonTapped(_ sender: Any) {
         register()
         changeLanguageInterface()
+        
     }
     
     var selectedCountry: Country? {
@@ -62,6 +68,11 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for textField in inputTextFields {
+            let uiTapGesture = UITapGestureRecognizer(target: self, action: #selector(textFieldTapped(recognizer:)))
+            textField.addGestureRecognizer(uiTapGesture)
+        }
+       
         
         // Add tap gesture recognizer to release the keyboard
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(releaseKeyboard))
@@ -72,6 +83,37 @@ class RegisterViewController: UIViewController {
         // fetch countries.
         Task { await countries = Countries().countries }
         prepareInputFields()
+    }
+    
+    @objc func textFieldTapped(recognizer: UITapGestureRecognizer) {
+        // Dismiss the keyboard if textfield is on editing
+        view.endEditing(true)
+        
+        // show the pickerview and select the row
+        if let textField = recognizer.view as? InputRegisterTextField {
+            // codetextField
+            if textField == codeTextField {
+                codePickerView.display {
+                   let selectedIndex = self.codePickerView.pickerView.selectedRow(inComponent: 0)
+                   self.codeTextField.text =  "\(self.countries[selectedIndex].code)"
+                    
+               }
+                // countryTextField
+            } else if textField == countryTextField {
+                countryPickerView.display {
+                   let selectedIndex = self.countryPickerView.pickerView.selectedRow(inComponent: 0)
+                    self.countryTextField.text =  self.countries[selectedIndex].nameByLang
+                    self.selectedCountry = self.countries[selectedIndex]
+               }
+            } else if textField == stateTextField {
+                statePickerView.display {
+                    let selectedIndex = self.statePickerView.pickerView.selectedRow(inComponent: 0)
+                    self.stateTextField.text = self.states[selectedIndex].nameByLang
+                    
+                }
+            }
+          
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,8 +133,10 @@ class RegisterViewController: UIViewController {
 
         modifyLabelText()
         prepareInputFields()
+        codeTextField.text = ""
         countryTextField.text = ""
         stateTextField.text = ""
+        statePickerView.pickerView.reloadComponent(0)
     }
     
     // End editing when tap gesture.
@@ -117,6 +161,10 @@ class RegisterViewController: UIViewController {
         countryTextField.tag = 2
         stateTextField.tag = 3
         
+        //assign passwordtextfield
+        passwordTextField.isSecureTextEntry = true // Enable secure text entry
+        passwordTextField.textContentType = .oneTimeCode
+        
         nameTextField.placeholder = localizedString(for:"Full name")
         passwordTextField.placeholder = localizedString(for:"Password")
         codeTextField.placeholder = localizedString(for:"Code")
@@ -136,6 +184,10 @@ class RegisterViewController: UIViewController {
         codePickerView.pickerView.dataSource = self
         statePickerView.pickerView.delegate = self
         statePickerView.pickerView.dataSource = self
+        nameTextField.delegate = self
+        phoneNumberTextField.delegate = self
+        passwordTextField.delegate = self
+        emailTextField.delegate = self
         countryTextField.delegate = self
         codeTextField.delegate = self
         stateTextField.delegate = self
@@ -162,19 +214,9 @@ class RegisterViewController: UIViewController {
         LanguageManager.shared.setLanguage()
         if Constants.isEnglish {
             phoneStackView.semanticContentAttribute = .forceLeftToRight
-
-            
         } else {
             phoneStackView.semanticContentAttribute = .forceRightToLeft
-
         }
-        /*
-         **Use this method to apply built in localization for the app
-        let currentLanguage = Locale.current.language.languageCode?.identifier
-        let selectedLanguage = currentLanguage == "en" ? "ar" : "en"
-        UserDefaults.standard.set([selectedLanguage], forKey: "AppleLanguages")
-        UserDefaults.standard.synchronize()
-         */
     }
 }
 
@@ -205,29 +247,9 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         case 2:
             return countries[row].nameByLang
         case 3:
-            return states[row].name
+            return states[row].nameByLang
         default:
             return "None"
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
-        switch pickerView.tag {
-        case 1:
-            codeTextField.text = "\(countries[row].code)"
-            codeTextField.resignFirstResponder()
-            
-        case 2:
-            countryTextField.text = countries[row].nameByLang
-            countryTextField.resignFirstResponder()
-            selectedCountry = countries[row]
-  
-        case 3:
-            stateTextField.text = states[row].name
-            stateTextField.resignFirstResponder()
-        default:
-            countryTextField.resignFirstResponder()
         }
     }
 }
@@ -235,18 +257,14 @@ extension RegisterViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 //MARK: - TextField delegate
 
 extension RegisterViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        false
-    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        false
+//    }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        switch textField.tag {
-        case 1: codePickerView.display {}
-        case 2: countryPickerView.display {}
-        case 3: statePickerView.display {}
-        default: break
-        }
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+   
+        textField.resignFirstResponder()
+        return true
     }
     
 }

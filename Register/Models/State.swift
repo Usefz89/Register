@@ -11,7 +11,9 @@ struct State: Codable {
     let name: String
     let id: String
     
-  
+    var nameByLang: String {
+        return localizedString(for: name)
+    }
     
     
     enum CodingKeys: String, CodingKey {

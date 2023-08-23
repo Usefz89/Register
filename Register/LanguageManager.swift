@@ -9,10 +9,16 @@ import Foundation
 
 class LanguageManager {
     static let shared = LanguageManager()
-    var currentLanguage: String = "en"
+    var currentLanguage: String = {   UserDefaults.standard.string(forKey: "AppleLanguages") ?? Locale.current.language.languageCode!.identifier
+    }()
+    
     
     func setLanguage() {
-        currentLanguage = currentLanguage == "en" ? "ar" : "en"
+        let setLanguage  = currentLanguage == "en" ? "ar" : "en"
+        UserDefaults.standard.setValue([setLanguage], forKey: "AppleLanguages")
+        currentLanguage = setLanguage
+//        UserDefaults.standard.setValue([currentLanguage], forKey: "AppleLanguages")
+        
         NotificationCenter.default.post(name: Notification.Name("languageChanged"), object: nil)
     }
 }
